@@ -384,7 +384,7 @@ docker-targets:
       from: amazonlinux:2
     output: lambda_zip
     after_compile: amazonlinux2_lambda
-    arch: x86_64
+    matrix: ['x86_64', 'aarch64']
 
   opensuse.leap15:
     source: docker/Dockerfile.opensuse
@@ -573,7 +573,7 @@ fpm-image:      wkhtmltopdf/fpm:1.10.2-20221124
 # qemu-user-static -- allow overriding the setup for a specific target
 qemu-user-static:
   default:
-    image: aptman/qus:d5.0 # chosen because it works with most builds
+    image: aptman/qus:arm64v8-d5.2
     setup:
       - "-- -r"
       - "-s -- -p"
