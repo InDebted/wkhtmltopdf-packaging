@@ -1,6 +1,33 @@
 Packaging wkhtmltopdf releases
 ==============================
 
+## Build amazonlinux2_lambda-aarch64
+
+1. Clone this repo & wkhtmltopdf itself
+
+```bash
+git clone git@github.com:InDebted/wkhtmltopdf-packaging.git wkhtmltopdf-packaging
+git clone git@github.com:wkhtmltopdf/wkhtmltopdf.git wkhtmltopdf
+```
+
+2. Update git submodule in `wkhtmltopdf`
+
+```bash
+cd wkhtmltopdf
+git submodule update --init
+```
+
+3. Download dependencies for `wkhtmltopdf-packaging` (python3, pyyaml, zip), then run command
+
+```bash
+cd wkhtmltopdf-packaging
+./build --no-qemu package-docker amazonlinux2_lambda-aarch64 ../wkhtmltopdf
+```
+
+After build succcesfully, there will be artifacts in `./targets` folder that we will use to create a new release
+
+
+
 Packaging wkhtmltopdf is a challenge because of the need for using a patched
 Qt to provide additional functionality and the cross-platform targets.
 Especially for Linux, the approach for packaging has changed multiple times,
